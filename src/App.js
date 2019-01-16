@@ -19,6 +19,19 @@ const particlesOptions = {
 }
 
 class App extends Component {
+  state = {
+    input: ''
+  }
+
+  onInputChange = (e) => {
+    console.log(e.target.value);
+  }
+
+  onButtonSubmit = (e) => {
+    e.preventDefault();
+    console.log('clicked');
+  }
+
   render() {
     return (
       <div className="App">
@@ -29,7 +42,10 @@ class App extends Component {
         <Navigation />
         <Logo />
         <Rank />
-        <ImageLinkForm />
+        <ImageLinkForm 
+          onInputChange={this.onInputChange} 
+          onButtonSubmit={this.onButtonSubmit}
+        />
         {/* <FaceRecognition /> */}
       </div>
     );
