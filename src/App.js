@@ -9,8 +9,6 @@ import Rank from './components/Rank/Rank';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 
-const API_KEY = process.env.REACT_APP_CLARIFAI_API_KEY;
-
 const particlesOptions = {
   particles: {
     number: {
@@ -24,7 +22,7 @@ const particlesOptions = {
 }
 
 const app = new Clarifai.App({
-  apiKey: API_KEY
+  apiKey: '8e44822185354e818f5a7658a917f567'
  });
 
 class App extends Component {
@@ -34,15 +32,16 @@ class App extends Component {
   }
 
   onInputChange = (e) => {
-    this.setState({ input: e.target.value })
+    this.setState({ input: e.target.value });
   }
 
-  onButtonSubmit = (e) => {
-    e.preventDefault();
+  onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input })
-    app.models.predict(Clarifai.COLOR_MODEL, "https://samples.clarifai.com/face-det.jpg").then(
+    app.models
+    .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
+    .then(
       function(response) {
-        console.log(response);
+        console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
       },
       function(err) {
         // there was an error

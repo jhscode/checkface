@@ -8,4 +8,4 @@ const FaceRecognition = ({ imageUrl }) => {
   );
 }
 
-export default FaceRecognition;
+export default FaceRecognition; 
