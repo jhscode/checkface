@@ -50,7 +50,7 @@ class App extends Component {
   }
 
   displayFaceBox = (box) => {
-      this.setState({ box: box })
+      this.setState({ box })
   }
 
   onInputChange = (e) => {
@@ -58,9 +58,10 @@ class App extends Component {
   }
 
   onButtonSubmit = () => {
-    this.setState({ imageUrl: this.state.input })
+    const { input } = this.state;
+    this.setState({ imageUrl: input })
     app.models
-    .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
+    .predict(Clarifai.FACE_DETECT_MODEL, input)
     .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
     .catch(err => console.log(err));
   }
@@ -71,18 +72,19 @@ class App extends Component {
     } else if (route === 'home') {
       this.setState({isSignedIn: true})
     }
-    this.setState({route: route})
+    this.setState({route})
   }
 
   render() {
+    const { isSignedIn, imageUrl, route, box } = this.state;
     return (
       <div className="App">
         <Particles 
           className='particles'
           params={particlesOptions}
         />
-        <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange}/>
-        { this.state.route === 'home' 
+        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
+        { route === 'home' 
           ? <Fragment>
               <Logo />
               <Rank />
@@ -91,12 +93,12 @@ class App extends Component {
                 onButtonSubmit={this.onButtonSubmit}
               />
               <FaceRecognition 
-                imageUrl={this.state.imageUrl}
-                box={this.state.box}
+                imageUrl={imageUrl}
+                box={box}
               />
               </Fragment>
           :(
-            this.state.route === 'signin' 
+            route === 'signin' 
               ? <Signin onRouteChange={this.onRouteChange} />
               : <Register onRouteChange={this.onRouteChange}/>
             )
