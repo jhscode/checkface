@@ -5,14 +5,14 @@ const ImageLinkForm = ({ onInputChange, onButtonSubmit }) => {
   return (
     <div>
       <p className='f3'>
-        {' Mr. Smiley Face will detect faces in any picture! '}
+        {' Mr. Smiley Face will detect faces in any picture! Place your URL in the box!'}
       </p>
       <div className='center'>
         <div className='center form pa4 br3 shadow-5'>
           <input 
             className='f4 pa2 w-70 center' 
             type='text' 
-            placeholder='search'
+            placeholder='URL'
             onChange={onInputChange}
           />
           <button 
