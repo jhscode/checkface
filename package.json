@@ -13,11 +13,15 @@
     "react-tilt": "^0.1.4",
     "tachyons": "^4.11.1"
   },
+  "proxy": "http://localhost:3001/",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "server": "nodemon ./index.js --ignore src/",
+    "client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "seed": "node api/seeds/index.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -29,6 +33,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "concurrently": "^4.1.0",
     "nodemon": "^1.18.9"
   }
 }
