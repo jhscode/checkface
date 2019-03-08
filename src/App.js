@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
+import axios from 'axios';
 
 import './App.css';
 import Navigation from './components/Navigation/Navigation';
@@ -34,6 +35,12 @@ class App extends Component {
     box: {},
     route: 'signin',
     isSignedIn: false
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3001/')
+      .then(res => res.json())
+      .then(console.log)
   }
 
   calculateFaceLocation = (data) => {
