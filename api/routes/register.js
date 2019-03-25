@@ -1,12 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-// const database = {
-//   users: [
-    
-//   ]
-// }
-
 router.post('/', async(req, res, next) => {
   const { email, name, password } = req.body;
   bcrypt.hash(password, null, null, function(err, hash) {
