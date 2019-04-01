@@ -8,7 +8,15 @@ router.get('/', async(req, res, next) => {
 router.get('/:id', async(req, res, next) => {
   const { id } = req.params;
   let found = false;
-  res.json('profile id');
+  database.users.forEach(user => {
+    if(user.id === id) {
+      found = true;
+      return res.json(user);
+    }
+  })
+  if(!found) {
+    res.status(400).json('not found');
+  }
 });
 
 
