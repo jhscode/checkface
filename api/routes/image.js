@@ -11,6 +11,7 @@ router.put('/', async(req, res, next) => {
   database.users.forEach(user => {
     if(user.id === id) {
       found = true;
+      user.entries++;
       return res.json(user.entries);
     }
   })
