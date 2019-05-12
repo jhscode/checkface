@@ -1,6 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
+const database = {
+  users: [
+    {
+      id: '124',
+
+    }
+  ]
+};
+
 router.get('/', async(req, res, next) => {
   res.json('profile')
 })

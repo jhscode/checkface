@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('brcrypt-nodejs'); 
 const router = express.Router();
 
 const database = {

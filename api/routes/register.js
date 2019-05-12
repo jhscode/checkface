@@ -1,5 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('brcrypt-nodejs');
+
+const database = {
+  users: [
+    {
+      id: '124',
+
+    }
+  ]
+};
 
 router.post('/', async(req, res, next) => {
   const { email, name, password } = req.body;
